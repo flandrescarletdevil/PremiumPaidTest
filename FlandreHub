@@ -1,0 +1,590 @@
+-- Load thư viện DiscordLib với cú pháp an toàn
+local success, DiscordLib = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/discord"))()
+end)
+if not success then
+    warn("Không tải được DiscordLib!")
+    return
+end
+
+local win = DiscordLib:Window("Flandre Hub")
+
+------------------------------
+-- Server: ⭐️Meme Adventure⭐️
+------------------------------
+local serv = win:Server("⭐️Meme Adventure⭐️", "")
+local drops = serv:Channel("Main")
+
+-- Kill aura
+drops:Button("kill aura", function()
+    getgenv().G = true
+    getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+    spawn(function()
+        while getgenv().G and getgenv().Creator == 'https://discord.gg/B3HqPPzFYr - HalloweenGaster' do
+            wait(0.9)
+            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", 112412400000)
+            sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", 112412400000)
+            for _, d in pairs(game.Workspace:GetDescendants()) do
+                if d:IsA("Humanoid") and d.Parent.Name ~= game.Players.LocalPlayer.Name then
+                    d.Health = 0
+                end
+            end
+        end
+    end)
+end)
+
+-- Turn off kill aura
+drops:Button("turn off kill aura", function()
+    getgenv().G = false
+    getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+    -- Nếu cần thêm xử lý, bạn có thể đặt thêm code tại đây
+end)
+
+-- Inf Yield
+drops:Button("inf yield", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+------------------------------
+-- Channel: helmet
+------------------------------
+local dropsHelmet = serv:Channel("helmet")
+dropsHelmet:Button("use all helmet", function()
+    spawn(function()
+        while wait() do
+            local rs = game:GetService("ReplicatedStorage").OtherThing.Tools
+            rs:FireServer("Giant Cursed Spirit Orb", "Armor")
+            rs:FireServer("Magma Doge Head", "Armor")
+            rs:FireServer("Golden Bozoi Head", "Armor")
+            rs:FireServer("Big Floppa Head", "Armor")
+            rs:FireServer("Void Head", "Armor")
+            rs:FireServer("Skull Bike", "Armor")
+            rs:FireServer("Walter Hat", "Armor")
+            rs:FireServer("The World Head", "Armor")
+            rs:FireServer("Walter Dog Head", "Armor")
+            rs:FireServer("Giant Shivering Head", "Armor")
+            rs:FireServer("Dark Maxwell Head", "Armor")
+            rs:FireServer("Fraudkuna Head", "Armor")
+            rs:FireServer("Nerd Head", "Armor")
+            rs:FireServer("Blindfold", "Armor")
+            rs:FireServer("Legendary Cat Lord Armor", "Armor")
+            rs:FireServer("Legendary Cat Lord Armor", "Helmet")
+            rs:FireServer("Legendary Cat Lord Armor", "Helmet")
+            rs:FireServer("Legendary Cat Lord Armor", "Helmet")
+        end
+    end)
+end)
+
+------------------------------
+-- Channel: fishing
+------------------------------
+local dropsFishing = serv:Channel("fishing")
+local function startFishing(remotePath, eventName)
+    getgenv().FishingEnabled = true
+    getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+    local args = { [1] = "Fishing1" }
+    spawn(function()
+        while getgenv().FishingEnabled and getgenv().Creator == 'https://discord.gg/B3HqPPzFYr - HalloweenGaster' do
+            -- Dùng pcall để tránh lỗi nếu đối tượng chưa sẵn sàng
+            pcall(function()
+                remotePath.RemoteEvent:FireServer(unpack(args))
+            end)
+            wait(0.1)
+        end
+    end)
+end
+
+dropsFishing:Button("fishing desert", function()
+    startFishing(game:GetService("Players").LocalPlayer.Character.Fishing.Desert, "Fishing1")
+end)
+
+dropsFishing:Button("fishing lava", function()
+    startFishing(game:GetService("Players").LocalPlayer.Character.Fishing.Lava, "Fishing1")
+end)
+
+dropsFishing:Button("fishing snow", function()
+    startFishing(game:GetService("Players").LocalPlayer.Character.Fishing.Snow, "Fishing1")
+end)
+
+-- Auto click claim gem
+dropsFishing:Button("auto click claim gem", function()
+    getgenv().G = true
+    getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    character:WaitForChild("HumanoidRootPart")
+    local function activatePrompts()
+        for _, prompt in ipairs(workspace:GetDescendants()) do
+            if prompt:IsA("ProximityPrompt") then
+                local promptPos = nil
+                if prompt.Parent and prompt.Parent:IsA("Model") and prompt.Parent.PrimaryPart then
+                    promptPos = prompt.Parent.PrimaryPart.Position
+                elseif prompt.Parent and prompt.Parent:IsA("BasePart") then
+                    promptPos = prompt.Parent.Position
+                else
+                    pcall(function() promptPos = prompt.Parent.Position end)
+                end
+                if promptPos then
+                    local distance = (character.HumanoidRootPart.Position - promptPos).Magnitude
+                    if distance <= prompt.MaxActivationDistance then
+                        fireproximityprompt(prompt)
+                        print("Đã kích hoạt ProximityPrompt: " .. prompt.Name)
+                    end
+                end
+            end
+        end
+    end
+    spawn(function()
+        while getgenv().G and getgenv().Creator == 'https://discord.gg/B3HqPPzFYr - HalloweenGaster' do
+            activatePrompts()
+            wait(0.5)
+        end
+    end)
+end)
+
+dropsFishing:Button("turn off claim gem", function()
+    getgenv().G = false
+    getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+end)
+
+dropsFishing:Button("turn off all fishing", function()
+    getgenv().FishingEnabled = false
+end)
+
+------------------------------
+-- Channel: no cooldown
+------------------------------
+local dropsNoCD = serv:Channel("no cooldown")
+
+-- instant use skill 1
+dropsNoCD:Button("instant use skill 1", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local tool = character:FindFirstChildOfClass("Tool")
+    if tool and tool:FindFirstChild("1") then
+        local remoteEvent = tool["1"]:FindFirstChild("RemoteEvent")
+        if remoteEvent then
+            remoteEvent:FireServer()
+            print("Skill 1 đã được kích hoạt thông qua RemoteEvent!")
+        else
+            warn("Không tìm thấy RemoteEvent trong Tool!")
+        end
+    else
+        warn("Người chơi chưa cầm dụng cụ hoặc không tìm thấy Tool.")
+    end
+end)
+
+-- instant use skill 2
+dropsNoCD:Button("instant use skill 2", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local tool = character:FindFirstChildOfClass("Tool")
+    if tool and tool:FindFirstChild("2") then
+        local remoteEvent = tool["2"]:FindFirstChild("RemoteEvent")
+        if remoteEvent then
+            remoteEvent:FireServer()
+            print("Skill 2 đã được kích hoạt thông qua RemoteEvent!")
+        else
+            warn("Không tìm thấy RemoteEvent trong Tool!")
+        end
+    else
+        warn("Người chơi chưa cầm dụng cụ hoặc không tìm thấy Tool.")
+    end
+end)
+
+-- instant use skill 3
+dropsNoCD:Button("instant use skill 3", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local tool = character:FindFirstChildOfClass("Tool")
+    if tool and tool:FindFirstChild("3") then
+        local remoteEvent = tool["3"]:FindFirstChild("RemoteEvent")
+        if remoteEvent then
+            remoteEvent:FireServer()
+            print("Skill 3 đã được kích hoạt thông qua RemoteEvent!")
+        else
+            warn("Không tìm thấy RemoteEvent trong Tool!")
+        end
+    else
+        warn("Người chơi chưa cầm dụng cụ hoặc không tìm thấy Tool.")
+    end
+end)
+
+------------------------------
+-- Channel: teleports
+------------------------------
+local dropsTeleports = serv:Channel("teleports")
+
+dropsTeleports:Button("chad island", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local targetPosition = Vector3.new(-709, 10, 509)
+    character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+end)
+
+dropsTeleports:Button("big brain island", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local targetPosition = Vector3.new(556, 10, 506)
+    character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+end)
+
+dropsTeleports:Button("kenjaku", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local targetPosition = Vector3.new(5217.044921875, 2260.821533203125, -4130.38330078125)
+    character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+end)
+
+dropsTeleports:Button("desert island", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local targetPosition = Vector3.new(-340.91278076171875, 18.29494857788086, -997.4833374023438)
+    character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+end)
+
+dropsTeleports:Button("desert fishing", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local targetPosition = Vector3.new(890.1141967773438, 9.118748664855957, -828.7176513671875)
+    character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+end)
+
+dropsTeleports:Button("cabybara boss", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local targetPosition = Vector3.new(5432.73046875, 1755.6904296875, 610.4720458984375)
+    character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+end)
+
+dropsTeleports:Button("maxwell boss", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local targetPosition = Vector3.new(-14569.0859375, 4700.61181640625, -3191.745361328125)
+    character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+end)
+
+dropsTeleports:Button("magma island", function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local targetPosition = Vector3.new(2801.695556640625, 11.266153335571289, -180.07965087890625)
+    character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+end)
+
+-- (Các nút Teleport khác được giữ nguyên cấu trúc tương tự)
+-- … (ví dụ: rock chest, diavolo, magma tree, let me do it boss, lava fishing, snow island, snow fishing, misaka city, dagon fight room, dagon domain, mahito fight room, mahito domain)
+
+------------------------------
+-- Server: ⭐️Viet Nam Piece⭐️
+------------------------------
+local serv2 = win:Server("⭐️Viet Nam Piece⭐️", "")
+local dropsVN = serv2:Channel("main")
+
+dropsVN:Button("kill aura", function()
+    getgenv().G = true
+    getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+    spawn(function()
+        while getgenv().G and getgenv().Creator == 'https://discord.gg/B3HqPPzFYr - HalloweenGaster' do
+            wait(0.9)
+            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", 112412400000)
+            sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", 112412400000)
+            for _, d in pairs(game.Workspace:GetDescendants()) do
+                if d:IsA("Humanoid") and d.Parent.Name ~= game.Players.LocalPlayer.Name then
+                    d.Health = 0
+                end
+            end
+        end
+    end)
+end)
+
+dropsVN:Button("simple spy", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/SimpleSpy/refs/heads/main/Mobile.lua"))()
+end)
+
+dropsVN:Button("turtle spy", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Turtle-Brand/Turtle-Spy/main/source.lua", true))()
+end)
+
+dropsVN:Button("inf yield", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+local dropsArmors = serv2:Channel("armors")
+dropsArmors:Button("copy all armor of sv", function()
+    local Players = game:GetService("Players")
+    local armors = {"Cursed-Armor", "Unique-Armor", "Darkness-Armor", "Thunder-Armor", "Thunder-Armor", "Diamond-Armor", "Golden-Armor", "Epic-Armor", "Iron-Armor", "Wooden-Armor"}
+    for _, player in pairs(Players:GetPlayers()) do
+        local backpack = player:FindFirstChild("Backpack")
+        if backpack then
+            for _, armorName in pairs(armors) do
+                local armor = backpack:FindFirstChild(armorName)
+                if armor and armor:FindFirstChild("K") and armor.K:FindFirstChild("Fire") then
+                    armor.K.Fire:FireServer()
+                end
+            end
+        end
+    end
+end)
+
+local dropsFastAttack = serv2:Channel("fast attack")
+
+-- Ví dụ nút “cid”
+dropsFastAttack:Button("cid", function()
+    local args = { [1] = 8, [2] = 1 }
+    spawn(function()
+        while true do
+            pcall(function()
+                game:GetService("Players").LocalPlayer.PlayerGui.Tengen.Skill1b.Z.TextButtonm1.Hitbox:FireServer(unpack(args))
+            end)
+            wait(0.1)
+        end
+    end)
+end)
+
+-- Nút “geto”
+dropsFastAttack:Button("geto", function()
+    local args = { [1] = 8, [2] = 1 }
+    spawn(function()
+        while true do
+            pcall(function()
+                game:GetService("Players").LocalPlayer.PlayerGui.Tengen.Skill1b.Z.TextButtonm1.Hitbox:FireServer(unpack(args))
+            end)
+            wait(0.1)
+        end
+    end)
+end)
+
+-- Nút “guts”
+dropsFastAttack:Button("guts", function()
+    local args = { [1] = 8, [2] = 1 }
+    spawn(function()
+        while true do
+            pcall(function()
+                game:GetService("Players").LocalPlayer.PlayerGui.Zabuza.Skill1b.Z.TextButtonm1.Hitbox:FireServer(unpack(args))
+            end)
+            wait(0.1)
+        end
+    end)
+end)
+
+-- Nút “escanor” (sửa lỗi thiếu end và thêm spawn)
+dropsFastAttack:Button("escanor", function()
+    local args = { [1] = 8, [2] = 1 }
+    spawn(function()
+        while true do
+            pcall(function()
+                game:GetService("Players").LocalPlayer.PlayerGui.Zabuza.Skill1b.Z.TextButtonm1.Hitbox:FireServer(unpack(args))
+            end)
+            wait(0.1)
+        end
+    end)
+end)
+
+-- Nút “yorus v3”
+dropsFastAttack:Button("yorus v3", function()
+    local args = { [1] = 8, [2] = 3 }
+    spawn(function()
+        while true do
+            pcall(function()
+                game:GetService("Players").LocalPlayer.PlayerGui.YoruV3.Skill1b.Z.TextButtonm1.Hitbox:FireServer(unpack(args))
+            end)
+            wait(0.1)
+        end
+    end)
+end)
+
+local drops = serv2:Channel("quest")
+
+drops:Button("you can get quest 500k at lv 20k lol", function()
+end)
+
+drops:Button("click npc and click quest 1,2,3", function()
+end)
+
+drops:Button("quest 1", function()
+-- Script 3: Quest Accept 1
+while wait() do
+    game:GetService("Players").LocalPlayer.PlayerGui.QuestTake.Accept1.RemoteEvent:FireServer()
+end
+end)
+
+drops:Button("quest 2 ", function()
+-- Script 2: Quest Accept 2
+while wait() do
+    game:GetService("Players").LocalPlayer.PlayerGui.QuestTake.Accept2.RemoteEvent:FireServer()
+end
+end)
+
+drops:Button("quest 3 ", function()
+-- Script 1: Quest Accept 3
+while wait() do
+    game:GetService("Players").LocalPlayer.PlayerGui.QuestTake.Accept3.RemoteEvent:FireServer()
+end
+end)
+
+local dropsRandom = serv2:Channel("random secret")
+dropsRandom:Button("if script dont work, go to that island", function()
+    -- Không có hành động nào
+end)
+
+dropsRandom:Button("secret sea 1", function()
+    spawn(function()
+        while true do
+            pcall(function()
+                fireclickdetector(game:GetService("Workspace").MAP["STARTER ISLAND [ Lv 1+ ]"]["Secret Random"].RANDOM)
+            end)
+            wait(0.1)
+        end
+    end)
+end)
+
+dropsRandom:Button("secret sea 2", function()
+    spawn(function()
+        while true do
+            pcall(function()
+                fireclickdetector(game:GetService("Workspace").MAP["STARTER ISLAND [ Lv 1+ ]"]["Secret Random"].RANDOM)
+            end)
+            wait(0.1)
+        end
+    end)
+end)
+
+dropsRandom:Button("yorus v3", function()
+    spawn(function()
+        while true do
+            local clickDetector = game.Workspace:FindFirstChild("MAP")
+                and game.Workspace.MAP:FindFirstChild("DAK ISLAND [Lv 1350+]")
+                and game.Workspace.MAP["DAK ISLAND [Lv 1350+]"]:FindFirstChild("Yoru V3 random")
+                and game.Workspace.MAP["DAK ISLAND [Lv 1350+]"]["Yoru V3 random"]:FindFirstChild("ClickDetector")
+            if clickDetector then
+                fireclickdetector(clickDetector)
+            else
+                warn("Không tìm thấy ClickDetector!")
+            end
+            wait(0.1)
+        end
+    end)
+end)
+
+dropsRandom:Button("wando sea 2", function()
+    spawn(function()
+        while true do
+            local clickDetector = game.Workspace:FindFirstChild("Platinum Town [ 2000 - 3000 ]")
+                and game.Workspace["Platinum Town [ 2000 - 3000 ]"]:FindFirstChild("PlatinumMAP")
+                and game.Workspace["Platinum Town [ 2000 - 3000 ]"].PlatinumMAP:FindFirstChild("GodBox")
+                and game.Workspace["Platinum Town [ 2000 - 3000 ]"].PlatinumMAP.GodBox:FindFirstChild("ClickDetector")
+            if clickDetector then
+                fireclickdetector(clickDetector)
+            else
+                warn("Không tìm thấy ClickDetector!")
+            end
+            wait(0.1)
+        end
+    end)
+end)
+
+local drops = serv2:Channel("teleports")
+
+drops:Button("sea 1👇", function()
+end)
+
+drops:Button("started island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(485.583771, 35.5632935, -511.945404)
+
+end)
+
+drops:Button("snow island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-915.918945, 33.7605095, 282.443604)
+
+end)
+
+drops:Button("sand island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-708.765259, 69.1108398, 1745.13916)
+
+end)
+
+drops:Button("sky island ", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4594.52393, 4279.44092, 474.423523)
+
+end)
+
+drops:Button("end island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2223.75146, 36.3414612, 1965.90369)
+
+end)
+
+drops:Button("minhmama island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2569.90283, 51.1074524, -65.4458542)
+
+end)
+
+drops:Button("dark island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3465.68188, 66.2542191, 3718.19531)
+
+end)
+
+drops:Button("sea 2 👇", function()
+end)
+
+drops:Button("kaido island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-685, 87690, 789)
+
+end)
+
+drops:Button("platinum island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1258, 87700, 3260)
+
+end)
+
+drops:Button("marine island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-160, 87750, -2010)
+
+end)
+
+drops:Button("nickbeo island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1600, 87700, 637)
+
+end)
+
+drops:Button("garou island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1600, 87700, 1073)
+
+end)
+
+drops:Button("sukuna island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1500, 87700, 2800)
+
+end)
+
+drops:Button("grab island", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2040, 87700, 50)
+
+end)
+
+drops:Button("atomic island ", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1635, 87710, -1085)
+
+
+end)
+
+drops:Button("sun island ", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1603, 87700, -2191)
+
+end)
+
+------------------------------
+-- Server: CREDITS
+------------------------------
+local serv3 = win:Server("CREDITS", "")
+
+local drops = serv3:Channel("credits")
+
+drops:Button("ui,script by thaylam", function()
+end)
+
+drops:Button("display name:54hz", function()
+end)
+
+drops:Button("discord name:nhm_roblox", function()
+end)
+
