@@ -1,6 +1,15 @@
 local player = game.Players.LocalPlayer
+local allowedPlayers = {"hoang_huy1k9", "HitoLazyboi", "chaugiatanloczx", "thaylam5A1"}
 
-if player.Name == "hoang_huy1k9" or "HitoLazyboi" or player.Name == "chaugiatanloczx" or player.Name == "thaylam5A1" then
+local isAllowed = false
+for _, name in ipairs(allowedPlayers) do
+    if player.Name == name then
+        isAllowed = true
+        break
+    end
+end
+
+if isAllowed then
     print("MUA SCRIPT ĐÊ")
 else
     player:Kick("MUA SCRIPT ĐÊ R CHO SÀI")
