@@ -1,3 +1,4 @@
+-- super premium
 local player = game.Players.LocalPlayer
 local allowedPlayers = {"hoang_huy1k9", "HitoLazyboi", "chaugiatanloczx", "thaylam5A1", "NOOD_Mouse"}
 
