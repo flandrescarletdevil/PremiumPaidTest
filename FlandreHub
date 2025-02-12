@@ -62,6 +62,43 @@ drops:Button("inf yield", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
 
+local dropsAuto = serv:Channel("auto")
+
+dropsAuto:Button("auto cabybara(need voidhead,secret grass,use auto claim gem)", function()
+-- Cấu hình bật/tắt và thông tin Creator
+getgenv().G = true
+getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+
+-- Script dịch chuyển
+spawn(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local hrp = character:WaitForChild("HumanoidRootPart")
+    
+    -- Danh sách 2 tọa độ cần dịch chuyển
+    local positions = {
+        Vector3.new(5478.534, 1752.534, 612.849),
+        Vector3.new(-412.941, 52.783, -1225.376)
+    }
+    local index = 1
+
+    -- Vòng lặp chạy khi getgenv().G = true và Creator khớp
+    while getgenv().G and getgenv().Creator == 'https://discord.gg/B3HqPPzFYr - HalloweenGaster' do
+        if hrp then
+            hrp.CFrame = CFrame.new(positions[index])
+            index = index % #positions + 1 -- Luân phiên 2 vị trí
+        end
+        wait(1) -- Dừng 1 giây giữa mỗi lần dịch chuyển
+    end
+end)
+
+end)
+
+dropsAuto:Button("turn off auto", function()
+    getgenv().G = false
+    getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+end)
+
 ------------------------------
 -- Channel: helmet
 ------------------------------
@@ -520,6 +557,14 @@ dropsVN:Button("kill aura", function()
             end
         end
     end)
+end)
+
+dropsVN:Button("simple spy", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/SimpleSpy/refs/heads/main/Mobile.lua"))()
+end)
+
+dropsVN:Button("turtle spy", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Turtle-Brand/Turtle-Spy/main/source.lua", true))()
 end)
 
 dropsVN:Button("inf yield", function()
