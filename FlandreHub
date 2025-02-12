@@ -522,14 +522,6 @@ dropsVN:Button("kill aura", function()
     end)
 end)
 
-dropsVN:Button("simple spy", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/SimpleSpy/refs/heads/main/Mobile.lua"))()
-end)
-
-dropsVN:Button("turtle spy", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Turtle-Brand/Turtle-Spy/main/source.lua", true))()
-end)
-
 dropsVN:Button("inf yield", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
